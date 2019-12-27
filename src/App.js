@@ -7,6 +7,7 @@ class App extends Component {
 	state = {
 		usersList: undefined,
 		error: false,
+		currentMonthId: null,
 	};
 	
 	componentDidMount() {
@@ -18,6 +19,10 @@ class App extends Component {
 				this.setState({ ...this.state, error: true });
 			});
 	}
+	
+	setCurrentMonthId = (id) => {
+		this.setState({...this.state, currentMonthId: id});
+	};
 	
 	getLoadingStatus = () => {
 		let loading = <p>Loading...</p>;
@@ -31,7 +36,12 @@ class App extends Component {
 	};
 	
 	getMonthsList = () => {
-		return this.state.usersList ? <MonthsList usersList={this.state.usersList}/> : null;
+		return this.state.usersList
+			? <MonthsList
+				usersList={this.state.usersList}
+				changeCurrMonthId={this.setCurrentMonthId}
+				monthId={this.state.currentMonthId}/>
+			: null;
 	};
 	
 	render() {

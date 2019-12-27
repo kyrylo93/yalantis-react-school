@@ -22,7 +22,13 @@ const monthItem = (props) => {
 	}
 	
 	return (
-		<li key={props.month} className='MonthItem' style={{backgroundColor: currentColor}}>{props.month}</li>
+		<li
+			key={props.month}
+			onMouseOver={props.changeCurrMonthId}
+			onMouseLeave={props.deleteCurrMonthId}
+			className='MonthItem'
+			style={{backgroundColor: currentColor}}
+		>{props.month}</li>
 	)
 };
 
