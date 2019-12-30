@@ -4,11 +4,14 @@ import UsersList from "./UsersList/UsersList";
 import './MonthsList.css';
 
 const monthsList = (props) => {
-	const filteredUsers = [[], [], [], [], [], [], [], [], [], [], [], []];
-	props.usersList.forEach(user => {
-		const userMonth = user.dob.split('-')[1];
-		filteredUsers[userMonth - 1].push(user);
-	});
+	const filteredUsers = [];
+	for (let i = 1; i <= 12; i++) {
+		const filtered = props.usersList.filter(user => {
+			const userMonth = +(user.dob.split('-')[1]);
+			return userMonth === i;
+		});
+		filteredUsers.push(filtered);
+	}
 	
 	const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 		.map((month, index) => (
